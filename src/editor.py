@@ -258,8 +258,8 @@ def ask_file_open(file_dir):
     root.focus_force()
     root.update()
     file_type = [
-            ('stadtluft document','*.stlf'),
-            ('text file','*.txt, *.text'),
+            ('stadtluft document', '*.stlf'),
+            ('text file','*.txt *.text'),
             ('All files','*.*')
             ]
     result =  filedialog.askopenfilename(filetypes = file_type, initialdir = file_dir)
@@ -278,7 +278,7 @@ def ask_file_save(file_dir, initial_name):
     root.update()
     file_type = [
             ('stadtluft document','*.stlf'),
-            ('text file','*.txt; *.text'), 
+            ('text file','*.txt *.text'), 
             ('All files','*.*'), 
         ]
     result =  filedialog.asksaveasfilename(
@@ -304,9 +304,9 @@ def ask_file_export(file_dir, initial_name=''):
     root.focus_force()
     root.update()
     file_type = [
-            ('text file','*.txt; *.text'), 
+            ('text file','*.txt *.text'), 
             ('markdown file','*.md'), 
-            ('html file','*.html; *.htm'), 
+            ('html file','*.html *.htm'), 
             ('All files','*.*'), 
         ]
     result =  filedialog.asksaveasfilename(
