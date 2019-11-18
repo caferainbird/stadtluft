@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Stadtluft: A Text Processor</title>
+        <link rel="stylesheet" href="./files/japanese-fonts.min.css">
+        <link rel="stylesheet" href="./iconfont/material-icons.css">
+        <link rel="stylesheet" href="./css/remodal.css">
+        <link rel="stylesheet" href="./css/remodal-default-theme.css">
+        <link rel="stylesheet" href="./css/style.css">
+        <link rel="shortcut icon" href="./files/favicon.ico"> 
+    </head>
+    <body>
+        <section class="container">
+            <div class="design-canvas">
+                <div class="main-canvas">
+                    <div class="screen" index="0" role="screen">
+                        <div class="content">
+                            <div class="menu">
+                                <div class="menu_left">
+                                    <i class="menu-icon material-icons icon clickable" id="new-file" title="New">insert_drive_file</i>
+                                    <i class="menu-icon material-icons icon clickable" id="open-file" title="Open">folder</i>
+                                    <i class="menu-icon material-icons icon clickable" id="export-file" title="Export">save</i>
+                                    <i class="menu-icon material-icons icon clickable" id="view-in-browser" title="Preview">launch</i>
+                                </div>
+                                <div class="menu_right">
+                                    <i class="menu-icon material-icons icon clickable" id="open-config" title="Configuration">tune</i>
+                                    <i class="menu-icon material-icons icon clickable" id="open-info" title="Info">info_outline</i>
+                                    <i class="menu-icon material-icons icon clickable" id="open-help" title="About">help_outline</i>
+                                    <i class="menu-icon material-icons icon clickable" id="menu-close" title="Close menu">keyboard_arrow_up</i>
+                                </div>
+                            </div>
+                            <div class="main" id="main-area">
+                                <form name="workspace" class="form_area">
+                                    <div class="editor">
+                                        <div class="header">
+                                            <span class="text_title text">
+                                                <p id="text-title" style="font-weight: bold;">untitled</p>
+                                                <p id="text-info"></p>
+                                                <i class="menu_open material-icons icon clickable edit-icon" id="edit-property" title="Edit file property">edit</i>
+                                                <i class="menu-icon material-icons icon clickable muted" id="play-SE" title="Sound Effect: OFF">volume_off</i>
+                                            </span>
+                                            <i class="menu_open material-icons icon clickable" id="menu-open" style="display:none" title="Open menu">keyboard_arrow_down</i>
+                                        </div>
+                                        <textarea name="textbody" required="required" type="text" class="text-space" id="manuscript" maxlength="250" minlength="1" rows="5" placeholder="Write down here."></textarea>
+                                        <div class="textarea_info">
+                                            <p class="text_count text"><span id="current-count">0</span>/200</p>
+                                        </div>
+                                    </div>
+                                    <button class="submit_data button" id="save-text" type="button"><p class="submit_title text">save<br></p></button>
+                                </form>
+                                <div class="footer">
+                                    <i class="footer-icon material-icons icon clickable" id="page-first" title="First">first_page</i>
+                                    <i class="footer-icon material-icons icon clickable" id="page-previous" title="Previous">chevron_left</i>
+                                    <div class="page_count">
+                                        <p class="current_page text"><span id="page-current">1</span>/<span id="page-total">1</span></p>
+                                    </div>
+                                    <i class="footer-icon material-icons icon clickable" id="page-next" title="Next">chevron_right</i>
+                                    <i class="footer-icon material-icons icon clickable" id="page-last" title="Last">last_page</i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </section>
+
+        <div class="remodal-bg"></div>
+
+        <!-- edit file information -->
+        <div class="remodal" data-remodal-id="property">
+            <button data-remodal-action="close" class="remodal-close"></button>
+            <h1 id="remodal-title">Edit File Information</h1>
+            <div id="remodal-content">
+                <form>
+                    <div class="setting-subcategory">
+                        <div class="setting-item">
+                            <label for="edit-property-title" class="setting-item-input">Title</label>
+                            <input type="text" id="edit-property-title" name="" placeholder="untitled">
+                        </div>
+                        <div class="setting-item">
+                            <label for="edit-property-author" class="setting-item-input">Author</label>
+                            <input type="text" id="edit-property-author" name="" placeholder="">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
+            <button data-remodal-action="confirm" class="remodal-confirm" id="save-fileinfo">OK</button>
+        </div>
+        
+        <!-- information -->
+        <div class="remodal" data-remodal-id="fileinfo">
+            <button data-remodal-action="close" class="remodal-close"></button>
+            <h1 id="remodal-title">File Information</h1>
+            <div id="remodal-content">
+                <form>
+                    <div class="setting-subcategory">
+                        <table id="fileinfo-list">
+                            <tr>
+                                <td>Title</td><td id="fileinfo-title"></td>
+                            </tr>
+                            <tr>
+                                <td>Author</td><td id="fileinfo-author"></td>
+                            </tr>
+                            <tr>
+                                <td>File-created</td><td id="fileinfo-created-at">-</td>
+                            </tr>
+                            <tr>
+                                <td>Last-updated</td><td id="fileinfo-last-updated">-</td>
+                            </tr>
+                        </table>
+                    </div>
+                </form>
+            </div>
+            <button data-remodal-action="confirm" class="remodal-confirm">OK</button>
+        </div>
+
+
+        <!-- setting -->
+        <div class="remodal" data-remodal-id="config">
+            <button data-remodal-action="close" class="remodal-close"></button>
+            <h1 id="remodal-title">Configuration</h1>
+            <div id="remodal-content">
+                <form id="setting">
+                    <div class="setting-subcategory">
+                        <h2>Appearance</h2>
+                        <div class="setting-item">
+                            <label for="setting-font-family">Font family</label>
+                            <select id="setting-font-family" name="" class="setting-item-select">
+                                <option value="sans-serif">sans-serif</option>
+                                <option value="serif">serif</option>
+                                <option value="monospace">monospace</option>
+                            </select>
+                        </div>
+                        <div class="setting-item">
+                            <label for="setting-font-size">Font size</label>
+                            <select id="setting-font-size" name="" class="setting-item-select">
+                                <option value="small">small</option>
+                                <option value="medium">medium</option>
+                                <option value="large">large</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="setting-subcategory">
+                        <h2>Default Setting</h2>
+                        <div class="setting-item">
+                            <label for="setting-default-menu">Default menu state</label>
+                            <select type="checkbox" id="setting-default-menu" name="" class="setting-item-select">
+                                <option value="on">show</option>
+                                <option value="off">hide</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
+            <button class="remodal-confirm" id="save-config">Save</button>
+        </div>
+
+        <div class="remodal" data-remodal-id="about">
+            <button data-remodal-action="close" class="remodal-close"></button>
+                <h1 id="remodal-title">About this Software</h1>
+            <div id="remodal-content">
+                <div style="text-align: center;"><img src="./files/logo_transparent.png" width="128" height="128" border="0"></div>
+                <b>Stadtluft</b>: A Text Processor
+                <br>
+                <br>
+                <span style="font-size:x-small">Copyright (c) 2019 Café Rainbird</span>
+                <br>
+                <br>
+            </div>
+            <button data-remodal-action="confirm" class="remodal-confirm">OK</button>
+        </div>
+
+        <script type="text/javascript" src="/eel.js"></script>
+        <script type="text/javascript" src="/js/jquery-3.3.1.js"></script>
+        <script type="text/javascript" src="/js/remodal.min.js"></script>
+        <script type="text/javascript" src="/js/app.js"></script>
+        <script type="text/javascript" src="/js/ui.js"></script>
+        
+        <audio id="carriage-return" preload="auto">
+            <source src="./files/CR.wav" type="audio/wav">
+        </audio>
+
+    </body></html>

@@ -1,0 +1,12 @@
+*.swp
+*.pyc
+stadtluft/eel/
+*.swo
+stadtluft/example.stlf
+*.txt
+stadtluft/untitled.stlf
+stadtluft/test.stlf
+build/
+dist/
+src/web/preview.html
+src/preview/preview.html

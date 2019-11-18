@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head lang="{{ lang }}">
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <meta name="author" content={{ author }}>
+    <style type="text/css">{{ css }}</style>
+</head>
+<body>
+    <div style="text-align:right">
+        <p>
+            {% if (not created_at == '-') %}
+                Created: {{ created_at }}
+            {% endif %}
+        <br>
+            {% if not last_updated == '-' %}
+                Last updated: {{ last_updated }}
+            {% endif %}
+        </p>
+    </div>
+
+    <h1 style="text-align:center">{{ title }}</h1>
+
+    <div style="text-align:right">
+    {{ author }}
+    </div>
+    {% for sentence in texts %}
+    <p>{{ sentence }}</p>
+    {% endfor %}
+
+    {% if text_size %}
+
+    {% endif %}
+
+</body>
+</html>
