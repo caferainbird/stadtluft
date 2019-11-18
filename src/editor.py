@@ -71,9 +71,12 @@ class Container:
                 break
     
     def set_existing_file(self, fullpath):
-        self.need_save_confirm = False
         self.set_pathinfo(fullpath)
-        self.load()
+        if self.load():
+            self.need_save_confirm = False
+            return True
+        else:
+            return False
 
     def set_new(self):
         self.set_pathinfo(self.get_default_name())
@@ -153,11 +156,15 @@ class Container:
     def open_file(self):
         candidate = ask_file_open(self.path)
         if(candidate):
-            self.set_existing_file(candidate)
+            return self.set_existing_file(candidate)
 
     def load(self):
         file_path = self.get_fullpath()
-        self.header, self.body = hd.read_file(file_path)
+        result = hd.read_file(file_path)
+        if result is None:
+            return False
+        self.header = result[0]
+        self.body = result[1]
         self.header['created_at'] = self.get_created_at(file_path)
         self.header['last_updated'] = self.get_updated_at(file_path)
         if not self.header.get('title'):
@@ -165,6 +172,7 @@ class Container:
         self.set_fileinfo(self.header)
         self.pages = {i: x for i,x in enumerate(separate(self.body))}
         self.current_page = len(self.pages)
+        return True
 
     def save(self):
         if self.need_save_confirm:

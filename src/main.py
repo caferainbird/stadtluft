@@ -33,15 +33,15 @@ def save_text(text):
 
 @eel.expose
 def change_file():
-    app.file.open_file()
-    result = {
-            'title' : app.file.title,
-            'filename' : app.file.filename,
-            'current_page' : app.file.current_page,
-            'fullpath' : app.file.get_fullpath(),
-            'file_exsists' : os.path.isfile(app.file.get_fullpath()),
-            }
-    return result
+    if app.file.open_file():
+        return {
+                'title' : app.file.title,
+                'filename' : app.file.filename,
+                'current_page' : app.file.current_page,
+                'fullpath' : app.file.get_fullpath(),
+                'file_exsists' : os.path.isfile(app.file.get_fullpath()),
+                }
+    return False
 
 @eel.expose
 def rename_file(filename, overwrite=False):

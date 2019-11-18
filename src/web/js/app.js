@@ -113,13 +113,17 @@ async function openNewFile(){
 
 async function openFile(){
     let res = await eel.change_file()();
-    document.getElementById('text-title').textContent = res.title;
-    resetInputText();
-    page_current = res.current_page;
-    page_cursor = res.current_page;
-    setPageTotal();
-    setPageCurrent();
-    loadHeader();
+    if(res){
+        document.getElementById('text-title').textContent = res.title;
+        resetInputText();
+        page_current = res.current_page;
+        page_cursor = res.current_page;
+        setPageTotal();
+        setPageCurrent();
+        loadHeader();
+    }else{
+        alert('Failed to read file.');
+    }
     $('#open-file').removeClass('disabled');
 }
 

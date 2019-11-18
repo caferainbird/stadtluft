@@ -55,8 +55,13 @@ def convert_header(header):
         return ''
 
 def read_file(filename):
-    with open(filename, 'r', encoding='utf8') as f:
-        header,body = read_header(f)
-    return header,body
+    for codec in ['utf8', 'sjis']:
+        try:
+            with open(filename, 'r', encoding=codec) as f:
+                return read_header(f)
+        except: 
+            pass
+
+    return None
 
 
