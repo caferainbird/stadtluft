@@ -2,11 +2,12 @@
 
 <img src="assets/logo_transparent.png" alt="logo_transparent" width="180" height="180" />
 
+Stadtluft (German: /ˈʃtatˌlʊft/ ) is a simple text processor suitable for outputting your thoughts.
+
 Stadtluft（しゅたっとるふと）はアウトプットに特化したシンプルなテキストプロセッサです。
 
-バイナリ版(Windows)はこちらで無料でダウンロードできます。
 
-https://caferainbird.booth.pm/
+
 
 ## Why Stadluft?
 
@@ -39,16 +40,20 @@ Stadtluftは「書くこと」に特化したテキストプロセッサです�
 アンインストールする際はフォルダをそのまま削除してください。
 
 
-### 基本的な動作
+### 基本的な動作 Basic action
 
 (バイナリ版)
 
-stadtluft.exeを起動します。起動には少し時間がかかります。
+Windows用のバイナリファイルは以下からダウンロードできます。
+
+https://github.com/caferainbird/stadtluft/releases
+
+zipファイルを解凍してstadtluft.exeを起動します。起動には少し時間がかかります。
 
 
 (Python)
 
-srcフォルダ内でmain.py実行します。
+クローンしたリポジトリのsrcフォルダ内でmain.pyを実行します。
 
 ```
 python main.py
@@ -68,32 +73,32 @@ python main.py
 + 保存が完了すると、入力領域が空になり、次の文の入力を受け付けます。
 + あとはひたすら書き進めるだけです。
 
-### その他の機能
+### その他の機能 Other functions
 
-#### メニューバー
+#### メニューバー Menu bar
 
 <img src="assets/menu-bar.png" alt="menu-bar" width="67%" height="67%" />
 
-<img src="assets/icon-new.png" alt="new file"  />新規作成
+<img src="assets/icon-new.png" alt="new file"  />新規作成 New file
 
 + 現在開いているファイルの編集をやめ、新しいファイルを開きます。
 + 確認のダイアログは表示されません。
 
-![open](assets/icon-open.png)ファイルを開く
+![open](assets/icon-open.png)ファイルを開く Open File
 
 + 既存のファイルを開きます。
 + Stadtluftで作成したファイル(.stlf)の他、テキストファイルも対応しています。
 
-![export](assets/icon-export.png)エクスポート
+![export](assets/icon-export.png)エクスポート Export
 
 + 編集中のファイルを所定の形式でエクスポートします。
 + HTMLファイル(.html)、マークダウンファイル(.md)、テキストファイル(.txt)に対応しています。
 
-![preview](assets/icon-preview.png)プレビュー
+![preview](assets/icon-preview.png)プレビュー Preview
 
 + 編集中のファイルをブラウザでプレビューします。
 
-![config](assets/icon-config)コンフィグ
+![config](assets/icon-config)コンフィグ Config
 
 + 設定画面を開きます。
 
@@ -101,37 +106,37 @@ python main.py
 
 + ファイルの情報を表示します。表示される情報は、タイトル・作成者・作成日・更新日です。
 
-![about](assets/icon-about.png)このソフトウェアについて
+![about](assets/icon-about.png)このソフトウェアについて About this software
 
 + Stadtluftに関する情報を表示します。
 
-![close](assets/icon-close.png)メニューを閉じる
+![close](assets/icon-close.png)メニューを閉じる Close menu bar
 
 + メニューバーを非表示にします。
 
 
 
-#### メイン画面
+#### メイン画面 Main window
 
 <img src="assets/main.png" alt="main" width="50%" height="50%" />
 
-+ ①タイトル
++ ①タイトル Title
     + 編集中のファイルのタイトルが表示されます。
-+ ②ファイル情報編集
++ ②ファイル情報編集 Edit file information
     + タイトルと作成者の情報を編集します。
-+ ③サウンドエフェクト
++ ③サウンドエフェクト Sound Effect
     + 保存時に鳴らす効果音を有効/無効にします。デフォルトでは無効です。
-+ ④メニューバーを開く
++ ④メニューバーを開く Open menu bar
     + メニューバーを開きます。メニューバーが閉じているときにのみ表示されます。
-+ ⑤文字カウント
++ ⑤文字カウント Character count
     + 現在入力中の文字数を表示します。
-+ ⑥セーブボタン
++ ⑥セーブボタン Save
     + 入力中の文を保存します。
-+ ⑦ページボタン
++ ⑦ページボタン Previous / Next Page 
     + これまで入力した文を振り返ることができます。ただし入力済みの文章を変更することはできません。
 
 
-## ライセンス
+## ライセンス License
 
 本ソフトウェアは[BSD三条項ライセンス](https://ja.wikipedia.org/wiki/BSD%E3%83%A9%E3%82%A4%E3%82%BB%E3%83%B3%E3%82%B9#%E4%BF%AE%E6%AD%A3BSD%E3%83%A9%E3%82%A4%E3%82%BB%E3%83%B3%E3%82%B9%E3%83%BB%E4%B8%89%E6%9D%A1%E9%A0%85BSD%E3%83%A9%E3%82%A4%E3%82%BB%E3%83%B3%E3%82%B9)に基づいて配布します。
 
@@ -145,15 +150,20 @@ python main.py
 
 気に入った方は有料版を購入するなどして支援していただけると助かります。
 
+
++ Pixiv Booth
+
+https://caferainbird.booth.pm/
+
 ## 更新履歴
 
 + 2019.11.18
-    + 公開(ver 1.00)
+    + ver 1.00
+        + 公開版
     + ver 1.01 
         + Shift-JISのテキストファイルを読み込めるよう修正
         + ファイル選択ダイアログの表示を修正
 
 
 <div style="text-align:right;">Copyright (c) 2019,  Café Rainbird <br> All rights reserved.</div>
-
 
