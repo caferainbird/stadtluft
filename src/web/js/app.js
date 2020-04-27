@@ -302,8 +302,13 @@ function saveInputText(){
     }
 }
 
+function clearInputText(){
+    text_tmp = '';
+}
+
 function createNewPage(){
     initTextCount();
+    clearInputText();
     page_cursor += 1;
     page_current += 1;
     setPageTotal();
@@ -409,6 +414,7 @@ function getOptionStructure(){
     });
     return res;
 }
+
 function convertOptions(element){
     var res = {};
     $.each(element.options, function(key, value){
