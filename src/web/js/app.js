@@ -1,3 +1,4 @@
+/*jshint esversion: 8 */
 
 let page_cursor = 0;
 let page_current = 0;
@@ -78,7 +79,7 @@ async function getPageContent(page_number){
 
 async function getTotalPageSize(){
     let res = await eel.get_page_size()();
-    document.getElementById('page-total').textContent = res
+    document.getElementById('page-total').textContent = res;
 }
 
 async function getTitle(){
@@ -87,14 +88,14 @@ async function getTitle(){
 }
 
 async function saveText(text){
-    let muted = $('#play-SE').hasClass('muted')
+    let muted = $('#play-SE').hasClass('muted');
     let res = await eel.save_text(text)();
     if(res){
         updateTimestamps(res);
         if(!muted){
             playSound();
         }
-        createNewPage()
+        createNewPage();
     }
     return res;
 }
@@ -199,14 +200,14 @@ function disableIcon(elementId){
     var target = $('#' + elementId);
     target.removeClass('clickable');
     target.addClass('disabled');
-    target.css('color', 'lightgrey')
+    target.css('color', 'lightgrey');
 }
 
 function enableIcon(elementId){
     var target = $('#' + elementId);
     target.removeClass('disabled');
     target.addClass('clickable');
-    target.css('color', '')
+    target.css('color', '');
 }
 
 function disableIcons(elementIds){
@@ -221,25 +222,25 @@ function enableIcons(elementIds){
 }
 
 function enableSubmit(){
-    $('#save-text').prop('disabled', false)
+    $('#save-text').prop('disabled', false);
     enableIcon('save-text');
     submit_enable = true;
-    document.getElementById('save-text').style.background = ''
-    document.getElementById('save-text').style.cursor = ''
-    document.getElementById('manuscript').style.background = ''
+    document.getElementById('save-text').style.background = '';
+    document.getElementById('save-text').style.cursor = '';
+    document.getElementById('manuscript').style.background = '';
 }
 
 function disableSubmit(change_bg){
     if(typeof change_bg === 'undefined'){
         change_bg = true;
     }
-    $('#save-text').prop('disabled', true)
+    $('#save-text').prop('disabled', true);
     disableIcon('save-text');
     submit_enable = false;
-    document.getElementById('save-text').style.background = 'lightgray'
-    document.getElementById('save-text').style.cursor = 'not-allowed'
+    document.getElementById('save-text').style.background = 'lightgray';
+    document.getElementById('save-text').style.cursor = 'not-allowed';
     if(change_bg){
-        document.getElementById('manuscript').style.background = 'whitesmoke'
+        document.getElementById('manuscript').style.background = 'whitesmoke';
     }
 }
 
@@ -262,7 +263,7 @@ function setPageCurrent(){
     }else{
         enableIcons(['page-first', 'page-previous']);
     }
-    $('#manuscript').prop('readonly', page_current != page_cursor)
+    $('#manuscript').prop('readonly', page_current != page_cursor);
     
     if(on_edit){
         document.getElementById('manuscript').style.background = '';
@@ -337,7 +338,7 @@ function openPage(page_number){
             document.getElementById('manuscript').value = value;
             updateTextCount();
             resizeTextArea();
-        })
+        });
     }
 
     // postprocess
@@ -369,7 +370,7 @@ function resizeTextArea(size){
     }
 
     var element = target.get(0);
-    var height = Number(target.attr('rows'))
+    var height = Number(target.attr('rows'));
 
     while(element.scrollHeight > element.offsetHeight){
         height += 1;
@@ -402,14 +403,14 @@ function getOptionStructure(){
     var res = {};
     $('.setting-item-select').each(function(index, element){
         res[element.id] = convertOptions(element);
-    })
+    });
     $('.setting-item-input').each(function(index, element){
         res[element.id] = {};
-    })
-    return res
+    });
+    return res;
 }
 function convertOptions(element){
-    var res = {}
+    var res = {};
     $.each(element.options, function(key, value){
         res[value.value] = key;
     });
@@ -434,7 +435,7 @@ function reflectSelected(){
 }
 
 function getOptionSelected(){
-    let result = {}
+    let result = {};
     config_items.forEach(function(key){
         if(key == 'default-file-name' || key == 'directory'){
             result[key] = document.getElementById(config_ids[key]).value;
@@ -463,10 +464,10 @@ function reflectConfig(){
 
 function reflectHeader(){
     console.log(header);
-    let title = (typeof header['title'] !== 'undefined' && header['title'].length > 0) ? header['title'] : 'untitled';
-    let author = (typeof header['author'] !== 'undefined') ? header['author'] : '';
-    let created_at = (header['created_at']) ? header['created_at'] : '-';
-    let last_updated = (header['last_updated']) ? header['last_updated'] : '-';
+    let title = (typeof header.title !== 'undefined' && header.title.length > 0) ? header.title : 'untitled';
+    let author = (typeof header.author !== 'undefined') ? header.author : '';
+    let created_at = (header.created_at) ? header.created_at : '-';
+    let last_updated = (header.last_updated) ? header.last_updated : '-';
     document.getElementById('text-title').innerText = title;
     document.getElementById('fileinfo-title').innerText = title;
     document.getElementById('edit-property-title').value = title;
@@ -477,7 +478,7 @@ function reflectHeader(){
 }
 
 function setPlaceholder(content){
-    if(typeof content === 'undeifned'){
+    if(typeof content === 'undefined'){
         content = 'Jot down your thoughts.';
     }
 
@@ -485,8 +486,8 @@ function setPlaceholder(content){
 }
 
 function updateTimestamps(res){
-    header['created_at'] = res['created_at'];
-    header['last_updated'] = res['updated_at'];
+    header.created_at = res.created_at;
+    header.last_updated = res.updated_at;
 }
 
 function changeAppTitle(title){
@@ -508,7 +509,7 @@ function toggleMuted(){
         target[0].innerText = 'volume_up';
     }else{
         target.addClass('muted');
-        target.attr('title', 'Sound Effect: OFF')
+        target.attr('title', 'Sound Effect: OFF');
         target[0].innerText = 'volume_off';
     }
 

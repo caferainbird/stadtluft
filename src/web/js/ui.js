@@ -41,7 +41,7 @@ $(document).on('click', '#save-text', function(event){
         return false;
     }
     var text = document.getElementById('manuscript').value;
-    saveText(text)
+    saveText(text);
 });
 
 $(document).on('click', '#view-in-browser', function(event){
